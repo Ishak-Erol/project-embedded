@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2a44dbbe4cebe80e",
+        "id": "593ccd761ce8a475",
         "type": "tabs",
         "children": [
           {
-            "id": "ffa2814f95bc50bb",
+            "id": "eab336954746cae6",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -74,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "f76a8cef4da03331",
@@ -90,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ITS/Vorlesung/Vorlesung 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Vorlesung 1"
+              "title": "Backlinks"
             }
           },
           {
@@ -109,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ITS/Vorlesung/Vorlesung 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Vorlesung 1"
+              "title": "Outgoing links"
             }
           },
           {
@@ -138,13 +136,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ITS/Vorlesung/Vorlesung 1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Vorlesung 1"
+              "title": "Outline"
             }
           }
         ]
@@ -164,12 +161,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "96cbea2c415c04e8",
+  "active": "eab336954746cae6",
   "lastOpenFiles": [
-    "STM32/Einkaufsliste.md",
+    "images/USB Typ-A auf UART, CP2102.png",
+    "images/STM32F1 VL - Discovery Kit.png",
+    "STM32/Todo.md",
+    "images/STM32F1.md",
+    "STM32/Chapter 2 - Introduction to the STM32F1/STM32 F1.md",
+    "STM32/Chapter 2 - Introduction to the STM32F1/Cortex-M3.md",
     "ITS/Vorlesung/Vorlesung 1.md",
+    "STM32/Chapter 2 - Introduction to the STM32F1",
+    "STM32/Hardware.md",
+    "Untitled",
+    "images",
     "ITS/Vorlesung",
-    "STM32/Untitled",
     "README.md",
     "nand2tetris",
     "STM32",
