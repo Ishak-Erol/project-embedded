@@ -1,1 +1,1 @@
-# MindLab
+# MindLab - Lern- und Entwicklungsnotizen 
