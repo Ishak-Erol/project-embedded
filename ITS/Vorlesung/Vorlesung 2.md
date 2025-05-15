@@ -41,5 +41,7 @@ Oder in anderen Worten:
 
 
 Gut zu Wissen: Man unterscheidet zwischen zwei Sicherheitskategorien:
-					1. Perfekte Sicherheit (One-Time Pad)
+					1. Perfekte Sicherheit (One-Time Pad als Beispiel)
 					2. praktische Sicherheit (theoretisch möglich, praktisch aufgrund von ressourcen grenzen nicht möglich )
+					
+[[2)Kryptographie.jpg]]
