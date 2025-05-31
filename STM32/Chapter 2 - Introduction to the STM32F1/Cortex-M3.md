@@ -1,2 +1,2 @@
-![[images/Cortex_M3.jpg]]
-[Zum Bild in groß](images/Cortex_M3.jpg)
+![[Cortex_M3.jpg]]
+[Zum Bild in groß](Cortex_M3.jpg)
