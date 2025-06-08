@@ -1,0 +1,4 @@
+- [ ] Was ist eine digitale Signatur?
+- [ ] Wofür?
+- [ ] Zusammenhang zur asymmetrischen Verschlüsselung
+- [ ] Wie?
