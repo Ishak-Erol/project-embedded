@@ -17,12 +17,12 @@ Erreicht wird dies durch Strukturänderungen auf Block bzw. bitebene. Man vertei
 Um die Diffusion zu verstärken, multiplizieren wir jeweils zwei benachbarte Zahlen modulo 26. Für „HELLO“ ergibt das 16, 14, 8, 14, während es für „HELLP“ 24, 14, 8, 14 wird. Obwohl sich im Klartext nur ein Buchstabe geändert hat, unterscheidet sich der Chiffretext an mehreren Stellen deutlich.
 #Diffusion
 
-Symmetrische Verschlüsselungen lassen sich sowohl mit **Blockchiffren** als auch mit **Stromchiffren** realisieren, wobei es bisher keine allgemein als sicher anerkannten Algorithmen für Stromchiffren gibt.  
+Symmetrische Verschlüsselungen lassen sich sowohl mit **Blockchiffren** als auch mit **Stromchiffren** realisieren ([[strom-blockchiffre.jpg]]), wobei es bisher keine allgemein als sicher anerkannten Algorithmen für Stromchiffren gibt.  
 Bei einer Stromchiffre werden mehrere Schlüssel aus einem Hauptschlüssel abgeleitet, die dann nacheinander mit den einzelnen Zeichen des Klartexts per XOR verknüpft werden.  
 Dagegen verschlüsselt eine Blockchiffre den Klartext blockweise, typischerweise in Blöcken von 128, 192 oder 256 Bit, mit einem einzigen Schlüssel.
 #Blockchiffre #Stromchiffre
 
-### AES
+### AES [[AES_Ablauf.jpg]]
 Der AES-Algorithmus ist eine bewährte Blockchiffre, die mit Schlüssellängen von 128, 192 oder 256 Bit arbeitet und auf 128-Bit-(16-Byte-)Blockgrößen operiert. Die Verschlüsselung besteht aus mehreren Runden, die jeweils aus vier Schritten bestehen.  
 Der erste Schritt jeder Runde ist die sogenannte **Byte-Substitution**. Dabei wird der Klartextblock noch vor dem ersten Schritt in ein zweidimensionales Array, den sogenannten **State** (eine 4x4-Byte-Matrix), umgewandelt. Anschließend wird jeder Eintrag der Matrix durch eine Substitution mittels einer **öffentlichen S-Box** ersetzt.
 

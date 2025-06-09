@@ -6,6 +6,7 @@ Für Blockchiffren haben sich darüber hinaus vier bewährte kryptographische Be
 - und **Galois/Counter Mode** #GCM 
 
 Jeder Modus hat spezielle Eigenschaften und Einsatzbereiche, die sich auf Sicherheit und Performance auswirken.
+[[Mode_of-Operations.jpg|Mode of Operations]]
 
 ## ==Electronic Code Book Mode==
 Beim **ECB-Modus** arbeitet der Algorithmus mit 256-Bit-Blöcken. Dabei wird der Klartext in Blöcke aufgeteilt und jeder Block einzeln mit demselben AES-Schlüssel (Masterkey, aus dem die Rundenschlüssel abgeleitet werden) verschlüsselt. Der Empfänger entschlüsselt die Blöcke mit demselben Schlüssel ([ECB]()).
