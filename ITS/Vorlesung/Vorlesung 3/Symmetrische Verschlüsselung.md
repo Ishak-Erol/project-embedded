@@ -22,6 +22,7 @@ Bei einer Stromchiffre werden mehrere Schlüssel aus einem Hauptschlüssel abgel
 Dagegen verschlüsselt eine Blockchiffre den Klartext blockweise, typischerweise in Blöcken von 128, 192 oder 256 Bit, mit einem einzigen Schlüssel.
 #Blockchiffre #Stromchiffre
 
+### AES
 Der AES-Algorithmus ist eine bewährte Blockchiffre, die mit Schlüssellängen von 128, 192 oder 256 Bit arbeitet und auf 128-Bit-(16-Byte-)Blockgrößen operiert. Die Verschlüsselung besteht aus mehreren Runden, die jeweils aus vier Schritten bestehen.  
 Der erste Schritt jeder Runde ist die sogenannte **Byte-Substitution**. Dabei wird der Klartextblock noch vor dem ersten Schritt in ein zweidimensionales Array, den sogenannten **State** (eine 4x4-Byte-Matrix), umgewandelt. Anschließend wird jeder Eintrag der Matrix durch eine Substitution mittels einer **öffentlichen S-Box** ersetzt.
 
