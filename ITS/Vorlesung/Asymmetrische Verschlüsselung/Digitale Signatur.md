@@ -8,11 +8,12 @@ Mit dem **zugehörigen öffentlichen Schlüssel** kann anschließend jeder prüf
 [[digitale_Signatur.jpg]]
 ### Signaturerstellung 
 $s = S(m, \text{GS}_A)$
+	*- GS = geheimer Schlüssel*
 
 ### Signaturverifikation
 $V(m, s, \text{ÖS}_A) {=} \text{ true}$
-
-HINWEIS: In der Praxis werden nicht die gesamten Nachsrichten signiert, da dies seeeehr rechenintesiv wäre. Stattdessen signiert man sogenannte "Hash" 
+	*- ÖS = öffentlicher Schlüssel*
+HINWEIS: In der Praxis werden nicht die gesamten Nachsrichten signiert, da dies seeeehr rechenintesiv wäre. Stattdessen signiert man sogenannte "[[One-Way-Hashfunktion]]" 
 
 ### Anwendungsbeispiel [[digitale_Zertifikate.jpg]]
 Bei der Erstellung digitaler Zertifikate wird mit dem **privaten Schlüssel der Zertifizierungsstelle** und dem **Hashwert des Zertifikats** eine **digitale Signatur** erzeugt.  

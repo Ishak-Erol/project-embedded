@@ -7,7 +7,7 @@ Es gibt drei grundlegende Arten der Modulation:
 - Frequenzmodulation (FM)  
 - Phasenmodulation (PM)  
 
-Uns muss zu Beginn klar sein, dass reale modulierte Signale (Basisbandsignal bzw. Nutzsignal) **nicht nur aus einer einzelnen Frequenz bestehen**, sondern ein ganzes **Frequenzgemisch** darstellen – das sogenannte **Basisbandspektrum**. [Abbildung 1](MCC/MCC_images/BasisbandspektrumRealesSignal.png) und [Abbildung 2](/MCC/MCC_images/BasisbandspektrumReineSinusschwingung.png) zeigen beispielhafte Spektren solcher Signale.
+Uns muss zu Beginn klar sein, dass reale modulierte Signale (auf eine Trägerfrequenz aufgesetzte Basisbandsignal) **nicht nur aus einer einzelnen Frequenz bestehen**, sondern ein ganzes **Frequenzgemisch** darstellen – das sogenannte **Basisbandspektrum**. [Abbildung 1](MCC/MCC_images/BasisbandspektrumRealesSignal.png) und [Abbildung 2](/MCC/MCC_images/BasisbandspektrumReineSinusschwingung.png) zeigen beispielhafte Spektren solcher Signale.
 
 Diese Erkenntnis erhält man durch die **Fourier-Transformation** des Basisbandsignals. Sie erlaubt es, ein komplexes Signal in seine einzelnen Frequenzanteile zu zerlegen. 
 

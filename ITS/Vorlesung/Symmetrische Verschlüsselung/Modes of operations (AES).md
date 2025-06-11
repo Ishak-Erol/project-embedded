@@ -9,9 +9,9 @@ Jeder Modus hat spezielle Eigenschaften und Einsatzbereiche, die sich auf Sicher
 [[Mode_of-Operations.jpg|Mode of Operations]]
 
 ## ==Electronic Code Book Mode==
-Beim **ECB-Modus** arbeitet der Algorithmus mit 256-Bit-Blöcken. Dabei wird der Klartext in Blöcke aufgeteilt und jeder Block einzeln mit demselben AES-Schlüssel (Masterkey, aus dem die Rundenschlüssel abgeleitet werden) verschlüsselt. Der Empfänger entschlüsselt die Blöcke mit demselben Schlüssel ([ECB]()).
+Beim **ECB-Modus** arbeitet der Algorithmus mit 256-Bit-Blöcken. Dabei wird der Klartext in Blöcke aufgeteilt und jeder Block einzeln mit demselben AES-Schlüssel (Masterkey, aus dem die Rundenschlüssel abgeleitet werden) verschlüsselt. Der Empfänger entschlüsselt die Blöcke mit demselben Schlüssel .
 
-Der Nachteil dieses Modus ist, dass bei gleichem Klartextblock und gleichem Schlüssel immer derselbe Chiffretextblock entsteht. Dadurch können Muster im Chiffretext sichtbar bleiben, was die Analyse durch einen Angreifer erleichtert ([Linux beispielbild]()).
+Der Nachteil dieses Modus ist, dass bei gleichem Klartextblock und gleichem Schlüssel immer derselbe Chiffretextblock entsteht. Dadurch können Muster im Chiffretext sichtbar bleiben, was die Analyse durch einen Angreifer erleichtert ([Linux beispielbild]()-------Abidlung Link).
 
 ## ==Cipher Block Chaining Mode==
 Der **CBC-Modus** (Cipher Block Chaining) versucht, die Problematik des ECB-Modus zu umgehen, indem zu Beginn der Verschlüsselung ein zufällig generierter **Initialisierungsvektor (IV)** mit dem ersten Klartextblock per XOR verknüpft wird. Dadurch unterscheiden sich die Chiffretexte auch bei gleichen Klartextblöcken im ersten Block.
