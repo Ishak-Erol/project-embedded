@@ -63,3 +63,12 @@ Bei diesem Angriffsvektor versucht der Angreifer, an die in der Datenbank gespei
 - Neben dem Salt wird ein geheimer **Pepper** verwendet, der für alle Passwörter gleich ist.
 - Der Pepper wird **nicht in der Datenbank gespeichert**, sondern in der **Anwendungslogik** geheim gehalten.
 - Dies erhöht die Sicherheit, da ein Angreifer, der nur die Datenbank erbeutet, den Pepper nicht kennt.
+
+### Weitere Angriffsvektoren
+##### Keylogger
+Malware, die Tastatureingaben wie Nutzername, Passwort oder Kreditkartendaten abfängt und speichert.  
+Daten werden heimlich an Server (Drop-Zonen) gesendet, wo Angreifer sie abrufen und für Angriffe nutzen.
+##### Phishing
+Form des Social Engineerings mit gefälschten Webseiten, E-Mails oder Nachrichten, um Nutzer zur Eingabe sensibler Daten zu bringen.
+##### Shoulder Surfing
+Angreifer beobachten in der Öffentlichkeit die Eingabe von Passwörtern oder anderen sensiblen Daten, z. B. im Zug oder Café.
