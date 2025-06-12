@@ -7,6 +7,9 @@ Wichtige Eigenschaften einer solchen Funktion sind vor allem:
 - Sie ist kollisionsresistent, das heißt, es ist praktisch unmöglich, zwei verschiedene Nachrichten \( $M \neq M'$ \) mit demselben Hashwert \( $h$ \) zu finden.
 - Die Funktion erfüllt das **Kerckhoffs-Prinzip**, das heißt, die Hashfunktion selbst ist öffentlich bekannt
 
+**Determinismus der Hashfunktion und Bedeutung von Salt:**  
+Eine Hashfunktion ist **deterministisch**, das bedeutet: Dieselbe Eingabe erzeugt immer denselben Hashwert. Das führt dazu, dass gleiche Passwörter ohne weitere Maßnahmen auch gleiche Hashwerte haben. Dadurch kann ein Angreifer z. B. durch Vergleich von Hashwerten erkennen, ob zwei Nutzer dasselbe Passwort verwenden.
+
 Das BSI empfiehlt die Verwendung der #Hashfunktionen aus den **SHA-2**- und **SHA-3**-Familien.  
 Die Hashfunktion wird unter anderem beim **Message Authentication Code (MAC)** genutzt und ist eine **Möglichkeit** zur Sicherstellung von Authentizität und Integrität, die sich von der digitalen Signatur unterscheidet.
 
