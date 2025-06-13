@@ -20,9 +20,9 @@ Der **Diffie-Hellman-Schlüsseltausch** war das erste Verfahren, das entwickelt 
 
 Bei diesem Verfahren einigen sich beide Kommunikationspartner zunächst auf eine **große Primzahl n**, die **öffentlich bekannt** ist. Zusätzlich wird eine Zahl g gewählt, die **teilerfremd zu n** ist (auch g ist öffentlich bekannt).  Im nächsten Schritt wählt jeder Partner eine **private, geheime Zufallszahl**:
 
-- Der Sender (z. B. Alice) wählt eine geheime Zahl aaa
+- Der Sender (z. B. Alice) wählt eine geheime Zahl a
     
-- Der Empfänger (z. B. Bob) wählt eine geheime Zahl bbb
+- Der Empfänger (z. B. Bob) wählt eine geheime Zahl b
 
 Nun berechnen beide jeweils einen öffentlichen Teil:
 - Alice berechnet:  
