@@ -31,8 +31,21 @@ Makefile.common
 `dpkg -S $(which gdb-multiarch)`
 	-> gibt an in welchen Paketen sich Dateien befinden (which multiarch gibt pfad von multiarch)
 
+---
 ## Header Dateien
 Header-Dateien (mit der Endung `.h`) sind reine Textdateien, die Deklarationen enthalten. Sie enthalten keinen ausführbaren Code, sondern dienen dazu, dem Compiler Informationen über Funktionen und Datenstrukturen bereitzustellen, die an anderer Stelle (meist in einer `.c`-Datei) definiert sind. Durch das Einbinden einer Header-Datei mit `#include` kann eine Quellcodedatei diese Deklarationen verwenden.
+## ⚙️ Rolle des Compilers:
+
+`#include "gpio.h"`
+`int main(void) {`
+    `init_gpio();         // Funktion aus einer anderen Datei`
+    `return 0;`
+`}`
+
+- **Er ersetzt `#include "gpio.h"`** durch den Inhalt der Datei `gpio.h`.
+- Er **überprüft, ob `init_gpio()` gültig deklariert** ist.
+- Er kompiliert `main.c` zu `main.o`, ohne zu wissen, **wo `init_gpio()` definiert ist** – das macht später der **Linker**.
+---
 
 `ishak@ishak-ThinkPad-T14-Gen-2a:~$ gdb-multiarch ./projekte/MindLab/STM32/STM32-Template/Demo/Demo.elf` 
 ==GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git==

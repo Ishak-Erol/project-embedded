@@ -4,7 +4,7 @@
 | Ubuntu | Betriebssystem (GNU + Linux)                                         |
 | GNU    | Projekt, dass Tools bereitstellt                                     |
 | Unix   | erstes Betriebssystem mit bestimmten Eigenschaften-> Basis von MacOS |
-- STM32 standard periperal library: https://www.st.com/en/embedded-software/stsw-stm32054.html#get-software (/home/ishak/projekte/en.stsw-stm32054_v3-6-0)
+- ~~STM32 standard periperal library: https://www.st.com/en/embedded-software/stsw-stm32054.html#get-software (/home/ishak/projekte/en.stsw-stm32054_v3-6-0)~~
 - **STM32VL Template** https://github.com/geoffreymbrown/STM32-Template#
  - Toolchain GNU Tools -> Debugger (GDB), Compiler (GCC), Assembler (GAS),  Dateikonverter (objcopy), Disassembler (objdump)
 	- sudo apt install gcc-arm-none-eabi (Ubunut repo), da **Sourcery CodeBench Lite Edition** das Projekt eingestellt hat 
@@ -37,3 +37,16 @@
 
 ---
 
+### Umstieg von SPL zu HAL + STM32CubeMX
+STM32CubeMX: https://www.st.com/en/microcontrollers-microprocessors/stm32f100rb.html
+Ab dem 14.06.2025 bin ich von der Standard Peripheral Library (SPL) auf die Hardware Abstraction Layer (HAL) in Kombination mit STM32CubeMX umgestiegen.
+
+- HAL - Eine **C-Bibliothek von ST**, die eine höhere Abstraktion über die Hardware bietet.
+- STM32CubeMX - Ein **grafisches Konfigurationstool**, das dir automatisch Startcode auf Basis von HAL (oder auch LL = Low Layer) generiert. */home/ishak/STM32CubeMX*
+- SPL - durch HAL ersetzt
+
+
+Der wichtigste Grund für den Umstieg ist, dass ich **möglichst schnell mit der praktischen Entwicklung beginnen** möchte – ohne mich anfangs zu sehr mit Low-Level-Registerdetails zu beschäftigen.  
+Mit HAL und CubeMX kann ich mich auf die Logik und Funktionalität konzentrieren, statt Zeit mit manueller Initialisierung und Hardware-Konfiguration zu verlieren.
+
+Parallel dazu arbeite ich mich **gezielt und bewusst in Bare-Metal-Programmierung ein**, z. B. anhand der Literatur von **Geoffrey Brown (Introduction to Embedded Systems with ARM Cortex-M Microcontrollers)**.
