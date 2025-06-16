@@ -3,7 +3,7 @@ Grundbegriffe: [[AuthentifkationAuthentisierungAutorisierung.jpg]]
 Beim Passwort-Verfahren handelt es sich um das einfachste und am weitesten verbreitete Verfahren zur **Authentifizierung** (auch: **Authentifikation**) eines Nutzers.    
 Man spricht hierbei von einem **Authentifizierungsfaktor der Kategorie „Wissen“**, da sich der Nutzer über sein Wissen ausweißt.
 
-Daneben gibt es noch weitere Kategorien von Authentifizierungsfaktoren:
+Daneben gibt es noch weitere Kategorien von Authentifizierungsverfahren:
 
 - **Besitz** – etwas, das man **hat** (z. B. ein Smartphone oder ein Token),
 - **Biometrie** – etwas, das man **ist** (z. B. ein Fingerabdruck oder Gesichtserkennung),
