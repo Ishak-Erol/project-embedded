@@ -18,7 +18,7 @@ Es gibt drei grundlegende Methoden der Substitution:
     Der Nachteil dieser Methode besteht darin, dass sie durch **Häufigkeitsanalyse** leicht zu knacken ist.  
     Wenn z. B. in einer Sprache ein bestimmter Buchstabe eine Häufigkeit von 50 % hat, wird auch im Ciphertext ein Zeichen mit ähnlicher Häufigkeit erscheinen – das verrät Rückschlüsse auf den ursprünglichen Text.
     
-2. **Polyalphabetische Substitution**:  
+2. **Polyalphabetische Substitution**:  ![[Polyalphabetische Substitution.jpg]]
     Diese Methode erweitert die monoalphabetische Substitution, indem **mehrere Alphabete** verwendet werden (wie der Name „poly“ = „mehrfach“ schon andeutet).  
     Das bedeutet: **Ein Buchstabe im Klartext kann je nach Position unterschiedlich verschlüsselt werden.**  
     Ein bekanntes Beispiel ist die [vigenere-Verschlüssleung](https://inf-schule.de/imperative-programmierung/python/projekte/modularisierung/verschluesselung/vigenereverfahren) .

@@ -16,7 +16,7 @@ Coed Injection ist ein Injection Angriff bei dem malicious Input von dem Nutzer 
 `}`
 
 Input: 
-	`ping("8.8.8.8 & echo test");`
+	`8.8.8.8; echo test`
 	
 Ausgeführt wird: 
 	`cmd.exe /c ping 8.8.8.8 & echo test`
