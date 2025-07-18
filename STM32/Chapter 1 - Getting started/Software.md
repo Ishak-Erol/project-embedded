@@ -7,7 +7,7 @@
 - ~~STM32 standard periperal library: https://www.st.com/en/embedded-software/stsw-stm32054.html#get-software (/home/ishak/projekte/en.stsw-stm32054_v3-6-0)~~
 - **STM32VL Template** https://github.com/geoffreymbrown/STM32-Template#
  - Toolchain GNU Tools -> Debugger (GDB), Compiler (GCC), Assembler (GAS),  Dateikonverter (objcopy), Disassembler (objdump)
-	- sudo apt install gcc-arm-none-eabi (Ubunut repo), da **Sourcery CodeBench Lite Edition** das Projekt eingestellt hat 
+	- sudo apt install gcc-arm-none-eabi (Ubunut repo), da **Sourcery CodeBench Lite Edition** das Projekt eingestellt hat (toolchain von ARM Ltd.)
 		- "Hinweis: »**gdb-multiarch**« wird an Stelle von »**gdb-arm-none-eabi**« gewählt"
 	- GDB Server (Vermittler zwischen Debugger auf dem Host Computer und MCU)
 		- Software die es ermöglicht mit dem GNU Debugger auf stm32 board zuzugreifen 
