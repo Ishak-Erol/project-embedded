@@ -1,4 +1,3 @@
-### Meine Zusammenfassung – STM32 Flashen und Debuggen
 
 1. **Problem beim Flashen und Verbinden:**
     
@@ -35,6 +34,18 @@ So konnte ich den Chip aus einem möglichen "Blockierzustand" holen, der das Fla
 
 Ich habe das Vorgehen in einem hilfreichen YouTube-Video gefunden, das genau diesen Trick zeigt.
 https://www.youtube.com/watch?v=jEz0C2bT2M0
+
+Alternativ auch über terminal mögich:
+`st-flash read testErase.bin 0x08000000 0x4000` –› liest **16 KiB** (0x4000 Bytes) ab der Speicheradresse **0x08000000** (==Startadresse des Flash-Speichers, siehe [RM0041](file:///home/ishak/Downloads/rm0041-stm32f100xx-advanced-armbased-32bit-mcus-stmicroelectronics-1.pdf), Seite 42==) aus dem Flash des STM32 und speichert die Daten in der Datei **testErase.bin**.
+
+`hexdump -C dump.bin | less` -› Zeigt den Inhalt der Datei **dump.bin** hexadezimal und ASCII-kodiert an, dabei wird die Ausgabe per `less` durchblätterbar gemacht.
+
+![[Pasted image 20250719122907.png]]
+Wichtig: Offset Angabe springt um 0x10 Bytes -›  binär 0001 0000 -› dezimal 2 hoch 4 = 16
+		--› also springt offset um 16bytes
+
+
+
 
 ![[Pasted image 20250718120533.png]]
 

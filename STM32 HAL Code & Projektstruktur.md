@@ -1,7 +1,3 @@
-# 🧠 **STM32 HAL Code & Projektstruktur – Kompaktübersicht für Wiederholung**
-
----
-
 ## ✅ **1. Was macht der STM32 HAL-Code in `main.c`?**
 
 ### Beispielcode (vereinfacht):
