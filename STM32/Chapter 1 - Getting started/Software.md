@@ -1,3 +1,4 @@
+
 |        |                                                                      |
 | ------ | -------------------------------------------------------------------- |
 | Linux  | Kernel (verwaltet Hardware, Speicher, ...)                           |
@@ -50,3 +51,10 @@ Der wichtigste Grund für den Umstieg ist, dass ich **möglichst schnell mit der
 Mit HAL und CubeMX kann ich mich auf die Logik und Funktionalität konzentrieren, statt Zeit mit manueller Initialisierung und Hardware-Konfiguration zu verlieren.
 
 Parallel dazu arbeite ich mich **gezielt und bewusst in Bare-Metal-Programmierung ein**, z. B. anhand der Literatur von **Geoffrey Brown (Introduction to Embedded Systems with ARM Cortex-M Microcontrollers)**.
+
+### Wechsel von Linux Ubuntu zu Windows
+Grund:
+.....
+
+Änderungen:
+........

@@ -1,6 +1,3 @@
-Register sind **Steuerbefehle für die Hardware**
-st-flash --reset write build/BlinkingLights.bin 0x08000000
-make
 
 ---
 ![[Pasted image 20250719150941.png]]
@@ -32,5 +29,6 @@ STM32_CubeMX/BlinkingLights/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f100x
 GPIO_BASE als Konstante definiert. wird ersetzt durch exakte speicheradresse
 
 ---
-GPIO ports werden definiert. GPIOA_BASE wird in Pointer umgewandelt (type casting). D.h., dass die Adresse durch die GPIOA_BASE ersetzt wurde nun ein Ppointer ist, der auf ein GPIO_TypeDef referenziert. Die GPIO Register (z.B. VRL, CRH, IDR) haben einen festen Bereich im Register![[Pasted image 20250719164339.png]]
+
+GPIO ports werden definiert. GPIOA_BASE wird in Pointer umgewandelt (type casting). D.h., dass die Adresse durch die GPIOA_BASE ersetzt wurde nun ein Ppointer ist, der auf ein GPIO_TypeDef referenziert. Die GPIO Register (z.B. CRL, CRH, IDR) haben einen festen Bereich im Register relativ zum GPIO-Port![[Pasted image 20250719164339.png]]
 siehe Seite 37 im [RM0041](file:///home/ishak/Downloads/rm0041-stm32f100xx-advanced-armbased-32bit-mcus-stmicroelectronics-1.pdf)
