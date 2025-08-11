@@ -49,3 +49,71 @@ flash write_image /home/ishak/projekte/MindLab/STM32/STM32_CubeMX/BlinkingLights
 
 
 
+openocd -f interface/stlink.cfg -f target/stm32f1x.cfg
+telnet localhost 4444
+init
+reset halt
+flash banks
+stm32f1x unlock 0
+reset halt
+flash banks
+stm32f1x mass_erase 0
+flash write_image erase verify build/firmware.bin 0x08000000
+reset run
+exit
+
+|        |                                    |
+| ------ | ---------------------------------- |
+| `init` | Verbindung und Ziel initialisieren |
+
+|   |   |
+|---|---|
+|`reset halt`|Ziel stoppen|
+
+|               |                              |
+| ------------- | ---------------------------- |
+| `flash banks` | Flash-Konfiguration anzeigen |
+
+|                     |                       |
+| ------------------- | --------------------- |
+| `stm32f1x unlock 0` | Flash-Schutz aufheben |
+
+|                         |                        |
+| ----------------------- | ---------------------- |
+| `stm32f1x mass_erase 0` | gesamten Flash löschen |
+
+|                         |                                     |
+| ----------------------- | ----------------------------------- |
+| `flash write_image ...` | Firmware schreiben und verifizieren |
+
+|   |   |
+|---|---|
+|`reset run`|Programm starten|
+- **Alle Register, Peripherie, Speicher etc. werden in den Anfangszustand versetzt**
+- Der **Program Counter (PC)** springt auf die Startadresse (z. B. `0x08000000` für STM32)
+
+|   |   |
+|---|---|
+|`exit`|Telnet-Verbindung schließen|
+
+---
+
+|   |   |   |
+|---|---|---|
+|**OpenOCD**|Verbindet PC mit dem Mikrocontroller über ST-Link/JTAG/SWD|zentraler Debug-Server|
+
+|   |   |   |
+|---|---|---|
+|**telnet**|Terminal-Zugang zu OpenOCDs Kommandointerface|steuert OpenOCD manuell|
+
+|   |   |   |
+|---|---|---|
+|**gdb-multiarch**|Debugger für viele Architekturen (z. B. ARM Cortex-M)|verbindet sich mit OpenOCD für Debugging|
+
+|            |                           |                                                                 |
+| ---------- | ------------------------- | --------------------------------------------------------------- |
+| **screen** | Serielles Terminal (UART) | verbindet sich mit dem UART des STM32 über z. B. `/dev/ttyUSB0` |
+📊 Beispiel-Workflow in einem Satz:
+Du **flashst mit OpenOCD**, **kontrollierst per telnet**, **debuggst mit gdb**, und **sprichst mit deinem Code per UART über screen**.
+
+---

@@ -90,29 +90,35 @@ int main(void) {
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  uint8_t message[] = "Hello world!\r\n";
+  uint8_t rx_index = 0;
+  uint8_t receivedMessage[12];
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
+    uint8_t messageByte[1];
+
     /* USER CODE END WHILE */
-    char nachricht1[] = "Hello world!";
-    char *nachricht1ptr = nachricht1;
-    char nachrichtÜberschrieben[strlen(nachricht1) + 1];
-    HAL_UART_Transmit(&huart1, (const uint8_t *)nachricht1ptr,
-                      strlen(nachricht1) + 1, HAL_MAX_DELAY);
-    HAL_Delay(250);
-    strcpy(nachricht1ptr, "bye world!");
-    HAL_UART_Transmit(&huart1, (const uint8_t *)nachricht1,
-                      strlen(nachricht1) + 1, HAL_MAX_DELAY);
-    HAL_Delay(250);
-    strcpy(nachrichtÜberschrieben, "!dlrow eyb");
-    HAL_UART_Transmit(&huart1, (const uint8_t *)nachrichtÜberschrieben,
-                      strlen(nachricht1) + 1, HAL_MAX_DELAY);
-    HAL_Delay(250);
 
     /* USER CODE BEGIN 3 */
+    // HAL_UART_Transmit(&huart1, message, strlen((char *)message), 1000);
+    // HAL_Delay(3000);
+
+    // (uint8_t *)&messageByte == &messageByte[0] == messageByte
+    if (HAL_UART_Receive(&huart1, &messageByte[0], 1, 1000) == HAL_OK) {
+      if (rx_index < 9) {
+        receivedMessage[rx_index] = messageByte[0];
+        rx_index++;
+      } else {
+        receivedMessage[rx_index] = '\0';
+        HAL_UART_Transmit(&huart1, &receivedMessage[0],
+                          strlen((char *)receivedMessage), 5000);
+        rx_index = 0;
+      }
+    }
   }
   /* USER CODE END 3 */
 }
@@ -208,7 +214,8 @@ static void MX_GPIO_Init(void) {
  */
 void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
+  /* User can add his own implementation to report the HAL error return state
+   */
   __disable_irq();
   while (1) {
   }
@@ -226,8 +233,8 @@ void Error_Handler(void) {
 void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line
-     number, ex: printf("Wrong parameters value: file %s on line %d\r\n", file,
-     line) */
+     number, ex: printf("Wrong parameters value: file %s on line %d\r\n",
+     file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
