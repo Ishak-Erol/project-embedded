@@ -1,0 +1,2 @@
+| **OpenOCD** | Verbindet PC mit dem Mikrocontroller über ST-Link/JTAG/SWD | zentraler Debug-Server |
+| ----------- | ---------------------------------------------------------- | ---------------------- |

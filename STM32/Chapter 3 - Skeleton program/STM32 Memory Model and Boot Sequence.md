@@ -1,9 +1,0 @@
-- [ ] flash memory
-- [ ] static ram
-- [ ] vector table
-	- [ ] exception handler
-	- [ ] reset handler
-	- [ ] initial stack pointer
-- [ ] GNU linker
-- [ ] LMA and VMA
-- [ ] 

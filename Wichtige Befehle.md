@@ -62,13 +62,18 @@ flash write_image erase verify build/firmware.bin 0x08000000
 reset run
 exit
 
-|        |                                    |
-| ------ | ---------------------------------- |
-| `init` | Verbindung und Ziel initialisieren |
+|              |                                         |
+| ------------ | --------------------------------------- |
+| `init`       | Verbindung und Ziel initialisieren      |
+| ST-link tool | Zweck                                   |
+| st-util      | GDB- Server für Debugging über ST-Link  |
+| st-info      | Abfragen on ST-Link Geräteinfos         |
+| st-trace     | Trace Daten auslesen und protokollieren |
+| st-flash     | Programmieren des STM32 Chips           |
 
-|   |   |
-|---|---|
-|`reset halt`|Ziel stoppen|
+|              |              |
+| ------------ | ------------ |
+| `reset halt` | Ziel stoppen |
 
 |               |                              |
 | ------------- | ---------------------------- |
@@ -77,6 +82,7 @@ exit
 |                     |                       |
 | ------------------- | --------------------- |
 | `stm32f1x unlock 0` | Flash-Schutz aufheben |
+|                     |                       |
 
 |                         |                        |
 | ----------------------- | ---------------------- |
@@ -86,29 +92,29 @@ exit
 | ----------------------- | ----------------------------------- |
 | `flash write_image ...` | Firmware schreiben und verifizieren |
 
-|   |   |
-|---|---|
-|`reset run`|Programm starten|
+|             |                  |
+| ----------- | ---------------- |
+| `reset run` | Programm starten |
 - **Alle Register, Peripherie, Speicher etc. werden in den Anfangszustand versetzt**
 - Der **Program Counter (PC)** springt auf die Startadresse (z. B. `0x08000000` für STM32)
 
-|   |   |
-|---|---|
-|`exit`|Telnet-Verbindung schließen|
+|        |                             |
+| ------ | --------------------------- |
+| `exit` | Telnet-Verbindung schließen |
 
 ---
 
-|   |   |   |
-|---|---|---|
-|**OpenOCD**|Verbindet PC mit dem Mikrocontroller über ST-Link/JTAG/SWD|zentraler Debug-Server|
+|             |                                                            |                        |
+| ----------- | ---------------------------------------------------------- | ---------------------- |
+| **OpenOCD** | Verbindet PC mit dem Mikrocontroller über ST-Link/JTAG/SWD | zentraler Debug-Server |
 
-|   |   |   |
-|---|---|---|
-|**telnet**|Terminal-Zugang zu OpenOCDs Kommandointerface|steuert OpenOCD manuell|
+|            |                                               |                         |
+| ---------- | --------------------------------------------- | ----------------------- |
+| **telnet** | Terminal-Zugang zu OpenOCDs Kommandointerface | steuert OpenOCD manuell |
 
-|   |   |   |
-|---|---|---|
-|**gdb-multiarch**|Debugger für viele Architekturen (z. B. ARM Cortex-M)|verbindet sich mit OpenOCD für Debugging|
+|                   |                                                       |                                          |
+| ----------------- | ----------------------------------------------------- | ---------------------------------------- |
+| **gdb-multiarch** | Debugger für viele Architekturen (z. B. ARM Cortex-M) | verbindet sich mit OpenOCD für Debugging |
 
 |            |                           |                                                                 |
 | ---------- | ------------------------- | --------------------------------------------------------------- |
