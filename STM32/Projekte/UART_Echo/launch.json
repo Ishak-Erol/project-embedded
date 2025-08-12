@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug (OpenOCD)",
+            "cwd": "${workspaceFolder}/UART_Echo",
+            "executable": "${workspaceFolder}/UART_Echo/build/UART_Echo.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "interface": "swd",
+            "device": "STM32F100RB",
+            "runToEntryPoint": "main",
+            // "svdFile": "${workspaceFolder}/UART_Echo/svd/TM4C123GH6PM.svd",
+            "configFiles": [
+                "${workspaceFolder}/../openocd.cfg" //.. - im verzeicnis zurück
+            ],
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "monitor reset"
+            ],
+            "postLaunchCommands": [
+                "monitor reset init",
+                "monitor sleep 200"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+    "cortex-debug.openocdPath": "/usr/bin/openocd",
+    "cortex-debug.armToolchainPath.linux": "/usr/bin",
+    "cortex-debug.armToolchainPath.windows": "C:\\ProgramData\\chocolatey\\bin",
+    "cortex-debug.gdbPath.linux": "/usr/bin/gdb-multiarch",
+    "cortex-debug.gdbPath.windows": "C:\\ProgramData\\chocolatey\\bin\\arm-none-eabi-gdb.exe"
