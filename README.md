@@ -1,53 +1,71 @@
 # MindLab - Lern- und Entwicklungsnotizen 
 
-Willkommen in meinem Obsidian-Wissensrepository!  
-Dieses Vault enthält Notizen, Code und Zusammenfassungen zu verschiedenen Themen, die ich im Studium oder privat bearbeite.
-
----
-
-## Verzeichnisse
-
-### Studium
-
-#### `ITS - Grundlagen der IT`
-**Pfad:** `ITS/`  
-**Inhalte:**
-- `Skizzen/` → Eigene Zeichnungen und Diagramme zur Vorlesung  
-- `Vorlesung/` → Mitschriften, Zusammenfassungen, Begriffsdefinitionen
-
-**Pfad:** `MCC/`  
-**Inhalte:**
-- `MCC_images/` → Eigene Skizzen + Bilder aus der Vorlesung  
-- `Vorlesungen/` → Mitschriften und Lernnotizen zu Cloud-/Mobiler Architektur
-
+Willkommen im **MindLab-Repository**!
 ---
 
 ### STM32 Microcontroller
 
 **Pfad:** `STM32/`  
 **Inhalte:**
-- `Chapter_*/` → Einzelne Kapitel orientiert an Geoffrey Browns Buch  
-- `images/` → technische Zeichnungen und Schaltbilder  
-- `stlink/` → Tools zur Programmierung über ST-Link  
-- `STM32CubeMX/` → Eigene modifizierte Projekte basierend auf Geoffrey Browns Beispielen  
-- `STM32_Template/` → Originalstruktur aus Geoffrey Browns Buch *"Discovering the STM32 Microcontroller"*
 
-🛠 Hinweis: Ich arbeite eng an Geoffrey Browns Bare-Metal-Beispielen und dokumentiere Anpassungen oder Experimente zu jedem Kapitel.
+## **Grundlagen**
+- **Architektur - Cortex-M3, STM32F1**: Einführung in **Cortex-M3** und **STM32F1**.
+- **Boot Modi**: Erklärung von unterschiedlihen Boot Modi
+- **C**: **C-Programmierung** für Embedded Systems.
+- **Dateiformate**: Überblick 
+- **Dokumentationen**: **Datasheets** und Referenzen zu STM32.
+- **Flash Programmierung**: Anleitungen zur **Flash-Speicherprogrammierung**.
+- **Gekauftes Produkt**: Quellen zu **STM32-Entwicklungsboards**.
+
+## **Peripherie**
+- **GPIO - Theorie**: Grundlagen zu **GPIO**-Pins.
+- **UART - UART**: Einführung in **UART-Kommunikation**.
+- **USART_register_map**: Mapping der **USART-Register**.
+- **USB-UART Adapter**: Nutzung von **USB-UART-Adaptern**.
+
+## **Projekte**
+- **BlinkingLightsButton**: LED-Blinken mit **Button-Steuerung**.
+- **Blinking Lights**: Einfaches **LED-Blinken**.
+- **UART_Echo**: **UART-Echo**-Projekt für serielle Kommunikation.
+
+## **Tools**
+- **CLI-Befehle**: Sammlung von **Debugging**- und **Programmierbefehlen**.
+- **OpenOCD**: Nutzung für **SWD**-Programmierung.
+- **Serielles Terminal (screen)**: Kommunikation über **UART**.
+- **Telnet**: **Telnet** für Netzwerkkommunikation.
+- **Toolchain**: Übersicht der **Entwicklungswerkzeuge**.
+
+## **Konfiguration**
+- **openocd.cfg**: **OpenOCD**-Konfiguration für Debugging und Programmierung.
+
+## **Reflexion**
+- **Abweichungen von Geoffrey Brown**: Reflexionen zu Abweichungen in der Methodik.
 
 ---
 
 ### Nand2Tetris
+**Pfad:** `nand2tetris/`  
+**Inhalte:**
 
-Ordner: `Nand2Tetris`  
-- Hardwaredesigns (z. B. ALU, Register, Speicher)
-- Eigene Implementierungen in HDL und Assembler
-- Reflexionen und Lernerkenntnisse zu den einzelnen Projekten
+## **projekt01**
+- HDL Code für Logikgatter
+
+## **projekt02**
+
+## **projekt03**
+
+.....
+---
+
+### MCC (Mobile and Cloud Computing)
+**Pfad:** `MCC/`  
+**Inhalte:**
+
+Dieser Ordner enthält Materialien und Projekte aus dem MCC-Modul meines Studiums, insbesondere im Bereich Signalverarbeitung und Funkkommunikation:
+
+- **Signalverarbeitung**: Projekte zur digitalen Signalverarbeitung
 
 ---
 
-### ToDos
-
-- [ ] Kapitel 1 von Nand2Tetris abschließen
-- [ ] STM32: Projekt `BlinkingLights` mit Geoffrey Browns Bare-Metal-Code abgleichen und anpassen  
 
 
