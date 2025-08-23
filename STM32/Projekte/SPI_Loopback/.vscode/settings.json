@@ -1,0 +1,3 @@
+"cortex-debug.openocdPath": "/usr/bin/openocd",
+"cortex-debug.armToolchainPath.linux": "/usr/bin",
+"cortex-debug.gdbPath.linux": "/usr/bin/gdb-multiarch"
