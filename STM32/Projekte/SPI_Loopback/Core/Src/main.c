@@ -31,7 +31,17 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define EEPROM_INSTR_READ 0x03  // read data
+#define EEPROM_INSTR_WRITE 0x02 // write data
+#define EEPROM_INSTR_WRDI 0x04  // set the write disable
+#define EEPROM_INSTR_WREN 0x06  // set the write enable
+#define EEPROM_INSTR_RDSR 0x05  // read status register
+#define EEPROM_INSTR_WRSR 0x01  // write status register
 
+#define EEPROM_CS_LOW()                                                        \
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET) // Select slave Pin
+#define EEPROM_CS_HIGH()                                                       \
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET) // Select slave Pin
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,7 +66,27 @@ static void MX_SPI2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t EEPROM_ReadByte(uint16_t addr) {
+  uint8_t data;
+  uint8_t msg[3];
+  msg[0] = EEPROM_INSTR_READ;
+  msg[1] = (addr >> 8) & 0xFF; // MSB wird um 8 bits nach rechts verschoben
+                               // und anschlißen wird der rest "abgeschnitten"
+  msg[2] = addr & 0xFF;
 
+  EEPROM_CS_LOW();
+  HAL_Delay(1000);
+  HAL_SPI_Transmit(&hspi2, msg, 3,
+                   HAL_MAX_DELAY); // separates transmit und receive, da hier
+                                   // ers die adresse gesendet werden musss
+                                   // bevor diese ausgelesen werden kann
+  HAL_SPI_Receive(&hspi2, &data, 1, HAL_MAX_DELAY);
+  HAL_Delay(1000);
+
+  EEPROM_CS_HIGH();
+
+  return data;
+}
 /* USER CODE END 0 */
 
 /**
@@ -95,26 +125,38 @@ int main(void) {
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  const uint8_t message[] = "hello!1";
-  uint8_t empfangen[sizeof(message)];
+
+  // const uint8_t message[] = "hello!1";
+  // uint8_t empfangen[sizeof(message)];
   while (1) {
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
-    HAL_Delay(1000);
+    GPIO_PinState buttonPressed = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+    if (buttonPressed == GPIO_PIN_SET) {
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9);
+      EEPROM_ReadByte(0x0000);
+    }
+    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
+    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
+    // HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+    //   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
 
-    HAL_SPI_TransmitReceive(&hspi2, message, empfangen, (uint16_t)8,
-                            HAL_MAX_DELAY);
+    //   HAL_Delay(1000);
 
-    if (strcmp(message, empfangen) == 0) {
-      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
-      HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
-    }
+    //   HAL_SPI_TransmitReceive(&hspi2, message, empfangen, (uint16_t)8,
+    //   HAL_MAX_DELAY); // Gesendete Bytes kommen direkt zurück, sofort
+    //   nutzbar, da master und slave dieselben sind (loopback)
 
-    HAL_Delay(3000);
+    //   if (strcmp(message, empfangen) == 0) {
+    //     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
+    //     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+    //   }
+
+    //   HAL_Delay(3000);
   }
   /* USER CODE END 3 */
 }
@@ -204,7 +246,17 @@ static void MX_GPIO_Init(void) {
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8 | GPIO_PIN_9, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PB12 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PC8 PC9 */
   GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
@@ -212,6 +264,12 @@ static void MX_GPIO_Init(void) {
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -228,7 +286,8 @@ static void MX_GPIO_Init(void) {
  */
 void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
+  /* User can add his own implementation to report the HAL error return state
+   */
   __disable_irq();
   while (1) {
   }
@@ -246,8 +305,8 @@ void Error_Handler(void) {
 void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line
-     number, ex: printf("Wrong parameters value: file %s on line %d\r\n", file,
-     line) */
+     number, ex: printf("Wrong parameters value: file %s on line %d\r\n",
+     file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

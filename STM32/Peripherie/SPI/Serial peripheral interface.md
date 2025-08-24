@@ -31,7 +31,7 @@
   - **synchron** (gemeinsamer Takt vom Master)  
   - **1 Taktimpuls = 1 Bit**  
 - Einsatz: Datentransfer zwischen „smarten“ Controllern und „einfacheren“ Geräten (Sensoren, Displays, Speicherchips).  
-Wichtig: - **Dummy-Bytes (z. B. 0xFF, sihe datenblatt)** nötig, wenn Master nur lesen möchte!
+Wichtig: - **Dummy-Bytes (z. B. 0xFF, sihe datenblatt)** nötig, wenn Master nur lesen möchte, da voll duplex! 
 
 ### SPI Clock Modes
 - CPOL (Clock polarity)=0  ==> idle(Ruhezustand) low(0) - active low

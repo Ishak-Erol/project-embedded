@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccwce5Vj.s 			page 1
+ARM GAS  /tmp/ccAF9FDo.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
   29:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** #ifdef HAL_RCC_MODULE_ENABLED
   30:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** 
   31:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** /** @defgroup RCCEx RCCEx
-ARM GAS  /tmp/ccwce5Vj.s 			page 2
+ARM GAS  /tmp/ccAF9FDo.s 			page 2
 
 
   32:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   * @brief RCC Extension HAL module driver.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
   86:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   *
   87:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   * @note   Care must be taken when HAL_RCCEx_PeriphCLKConfig() is used to select
   88:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   *         the RTC clock source; in this case the Backup domain will be reset in
-ARM GAS  /tmp/ccwce5Vj.s 			page 3
+ARM GAS  /tmp/ccAF9FDo.s 			page 3
 
 
   89:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   *         order to modify the RTC Clock source, as consequence RTC registers (including
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
   56              		.loc 1 114 5 view .LVU8
  115:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** 
  116:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****     /* As soon as function is called to change RTC clock source, activation of the
-ARM GAS  /tmp/ccwce5Vj.s 			page 4
+ARM GAS  /tmp/ccAF9FDo.s 			page 4
 
 
  117:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****        power domain is done. */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  133:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       while (HAL_IS_BIT_CLR(PWR->CR, PWR_CR_DBP))
  134:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       {
  135:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****         if ((HAL_GetTick() - tickstart) > RCC_DBP_TIMEOUT_VALUE)
-ARM GAS  /tmp/ccwce5Vj.s 			page 5
+ARM GAS  /tmp/ccAF9FDo.s 			page 5
 
 
  136:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****         {
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  154:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       /* Wait for LSERDY if LSE was enabled */
  155:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       if (HAL_IS_BIT_SET(temp_reg, RCC_BDCR_LSEON))
  131              		.loc 1 155 7 is_stmt 1 view .LVU38
-ARM GAS  /tmp/ccwce5Vj.s 			page 6
+ARM GAS  /tmp/ccAF9FDo.s 			page 6
 
 
  132              		.loc 1 155 10 is_stmt 0 view .LVU39
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  184:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** 
  185:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****     /* Configure the ADC clock source */
  186:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****     __HAL_RCC_ADC_CONFIG(PeriphClkInit->AdcClockSelection);
-ARM GAS  /tmp/ccwce5Vj.s 			page 7
+ARM GAS  /tmp/ccAF9FDo.s 			page 7
 
 
  158              		.loc 1 186 5 view .LVU48
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  234:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       }
  235:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** 
  236:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       /* Configure the HSE prediv2 factor --------------------------------*/
-ARM GAS  /tmp/ccwce5Vj.s 			page 8
+ARM GAS  /tmp/ccAF9FDo.s 			page 8
 
 
  237:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       __HAL_RCC_HSE_PREDIV2_CONFIG(PeriphClkInit->PLLI2S.HSEPrediv2Value);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  172 0094 0025     		movs	r5, #0
  173 0096 CAE7     		b	.L3
  174              	.LVL13:
-ARM GAS  /tmp/ccwce5Vj.s 			page 9
+ARM GAS  /tmp/ccAF9FDo.s 			page 9
 
 
  175              	.L16:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  215              	.LVL19:
  161:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****         {
  216              		.loc 1 161 9 is_stmt 1 view .LVU65
-ARM GAS  /tmp/ccwce5Vj.s 			page 10
+ARM GAS  /tmp/ccAF9FDo.s 			page 10
 
 
  217              	.L9:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  260              		.loc 1 283 1 view .LVU78
  261 00f2 00BF     		.align	2
  262              	.L19:
-ARM GAS  /tmp/ccwce5Vj.s 			page 11
+ARM GAS  /tmp/ccAF9FDo.s 			page 11
 
 
  263 00f4 00100240 		.word	1073876992
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  304:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   /* Get the ADC clock configuration -----------------------------------------*/
  305:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****   PeriphClkInit->PeriphClockSelection |= RCC_PERIPHCLK_ADC;
  299              		.loc 1 305 3 is_stmt 1 view .LVU88
-ARM GAS  /tmp/ccwce5Vj.s 			page 12
+ARM GAS  /tmp/ccAF9FDo.s 			page 12
 
 
  300              		.loc 1 305 39 is_stmt 0 view .LVU89
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  323              		.syntax unified
  324              		.thumb
  325              		.thumb_func
-ARM GAS  /tmp/ccwce5Vj.s 			page 13
+ARM GAS  /tmp/ccAF9FDo.s 			page 13
 
 
  327              	HAL_RCCEx_GetPeriphCLKFreq:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  332              		@ args = 0, pretend = 0, frame = 0
  333              		@ frame_needed = 0, uses_anonymous_args = 0
  334              		.loc 1 386 1 is_stmt 0 view .LVU96
-ARM GAS  /tmp/ccwce5Vj.s 			page 14
+ARM GAS  /tmp/ccAF9FDo.s 			page 14
 
 
  335 0000 08B5     		push	{r3, lr}
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  422:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** #if defined(STM32F105xC) || defined(STM32F107xC) || defined(STM32F100xB)\
  423:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****  || defined(STM32F100xE)
  424:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           prediv1 = aPredivFactorTable[(uint32_t)(RCC->CFGR2 & RCC_CFGR2_PREDIV1) >> RCC_CFGR2_PRED
-ARM GAS  /tmp/ccwce5Vj.s 			page 15
+ARM GAS  /tmp/ccAF9FDo.s 			page 15
 
 
  425:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c **** #else
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  479:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****         if (__HAL_RCC_GET_USB_SOURCE() == RCC_USBCLKSOURCE_PLL)
  480:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****         {
  481:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           /* No prescaler selected for USB */
-ARM GAS  /tmp/ccwce5Vj.s 			page 16
+ARM GAS  /tmp/ccAF9FDo.s 			page 16
 
 
  482:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           frequency = pllclk;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  536:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           /* PLLI2SVCO = 2 * PLLI2SCLK = 2 * (HSE/PREDIV2 * PLL3MUL) */
  537:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           prediv2 = ((RCC->CFGR2 & RCC_CFGR2_PREDIV2) >> RCC_CFGR2_PREDIV2_Pos) + 1;
  538:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           pll3mul = ((RCC->CFGR2 & RCC_CFGR2_PLL3MUL) >> RCC_CFGR2_PLL3MUL_Pos) + 2;
-ARM GAS  /tmp/ccwce5Vj.s 			page 17
+ARM GAS  /tmp/ccAF9FDo.s 			page 17
 
 
  539:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****           frequency = (uint32_t)(2 * ((HSE_VALUE / prediv2) * pll3mul));
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  383              	.LVL34:
  384              	.L34:
  557:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       {
-ARM GAS  /tmp/ccwce5Vj.s 			page 18
+ARM GAS  /tmp/ccAF9FDo.s 			page 18
 
 
  385              		.loc 1 557 75 discriminator 1 view .LVU113
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  574:Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ****       break;
  414              		.loc 1 574 19 is_stmt 0 view .LVU123
  415 0052 FFF7FEFF 		bl	HAL_RCC_GetPCLK2Freq
-ARM GAS  /tmp/ccwce5Vj.s 			page 19
+ARM GAS  /tmp/ccAF9FDo.s 			page 19
 
 
  416              	.LVL40:
@@ -1129,20 +1129,20 @@ ARM GAS  /tmp/ccwce5Vj.s 			page 1
  453              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h"
  454              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h"
  455              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
-ARM GAS  /tmp/ccwce5Vj.s 			page 20
+ARM GAS  /tmp/ccAF9FDo.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f1xx_hal_rcc_ex.c
-     /tmp/ccwce5Vj.s:19     .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
-     /tmp/ccwce5Vj.s:25     .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
-     /tmp/ccwce5Vj.s:263    .text.HAL_RCCEx_PeriphCLKConfig:000000f4 $d
-     /tmp/ccwce5Vj.s:270    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
-     /tmp/ccwce5Vj.s:276    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
-     /tmp/ccwce5Vj.s:316    .text.HAL_RCCEx_GetPeriphCLKConfig:0000001c $d
-     /tmp/ccwce5Vj.s:321    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
-     /tmp/ccwce5Vj.s:327    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
-     /tmp/ccwce5Vj.s:443    .text.HAL_RCCEx_GetPeriphCLKFreq:00000070 $d
+     /tmp/ccAF9FDo.s:19     .text.HAL_RCCEx_PeriphCLKConfig:00000000 $t
+     /tmp/ccAF9FDo.s:25     .text.HAL_RCCEx_PeriphCLKConfig:00000000 HAL_RCCEx_PeriphCLKConfig
+     /tmp/ccAF9FDo.s:263    .text.HAL_RCCEx_PeriphCLKConfig:000000f4 $d
+     /tmp/ccAF9FDo.s:270    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 $t
+     /tmp/ccAF9FDo.s:276    .text.HAL_RCCEx_GetPeriphCLKConfig:00000000 HAL_RCCEx_GetPeriphCLKConfig
+     /tmp/ccAF9FDo.s:316    .text.HAL_RCCEx_GetPeriphCLKConfig:0000001c $d
+     /tmp/ccAF9FDo.s:321    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 $t
+     /tmp/ccAF9FDo.s:327    .text.HAL_RCCEx_GetPeriphCLKFreq:00000000 HAL_RCCEx_GetPeriphCLKFreq
+     /tmp/ccAF9FDo.s:443    .text.HAL_RCCEx_GetPeriphCLKFreq:00000070 $d
 
 UNDEFINED SYMBOLS
 HAL_GetTick
