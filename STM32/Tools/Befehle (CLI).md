@@ -24,5 +24,4 @@
 openocd -f openocd.cfg
 
 
-ELF → BIN konvertieren
-arm-none-eabi-objcopy -O binary build/SPI_Loopback.elf build/SPI_Loopback_Debug.bin
+

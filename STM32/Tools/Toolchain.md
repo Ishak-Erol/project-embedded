@@ -35,3 +35,6 @@
 - **GDB Server** (Vermittler zwischen Debugger auf dem Host Computer und MCU)
 		->Software die es ermöglicht mit dem GNU Debugger auf stm32 board zuzugreifen (auch nötig zum flashen)
 
+**Binutils für Multiarch**:  
+  'sudo apt install binutils-multiarch'
+- Nötig für VSCode Cortex-Debug Extension, damit Symbole korrekt gelesen werden können

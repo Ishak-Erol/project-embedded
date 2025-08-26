@@ -75,17 +75,58 @@ uint8_t EEPROM_ReadByte(uint16_t addr) {
   msg[2] = addr & 0xFF;
 
   EEPROM_CS_LOW();
-  HAL_Delay(1000);
   HAL_SPI_Transmit(&hspi2, msg, 3,
                    HAL_MAX_DELAY); // separates transmit und receive, da hier
                                    // ers die adresse gesendet werden musss
                                    // bevor diese ausgelesen werden kann
   HAL_SPI_Receive(&hspi2, &data, 1, HAL_MAX_DELAY);
-  HAL_Delay(1000);
+  HAL_Delay(100);
 
   EEPROM_CS_HIGH();
 
   return data;
+}
+
+// eleganterere Lösung anstelle den Zeitraum des schreibens durch beliebige zeit
+// zu warten (zu lang, zu kuurz ....)
+uint8_t EEPROM_ReadStatus(void) {
+  uint8_t instruction = EEPROM_INSTR_RDSR;
+  uint8_t status;
+
+  EEPROM_CS_LOW();
+  HAL_SPI_Transmit(&hspi2, &instruction, 1, HAL_MAX_DELAY);
+  HAL_SPI_Receive(&hspi2, &status, 1, HAL_MAX_DELAY);
+  EEPROM_CS_HIGH();
+
+  return status;
+}
+void EEPROM_WriteByte(uint16_t addr, uint8_t counter) {
+  uint8_t wren = EEPROM_INSTR_WREN;
+  EEPROM_CS_LOW();
+  HAL_SPI_Transmit(&hspi2, &wren, 1, HAL_MAX_DELAY);
+  EEPROM_CS_HIGH();
+
+  HAL_Delay(10);
+
+  uint8_t data = 0x00 + counter;
+  uint8_t msg[4];
+
+  msg[0] = EEPROM_INSTR_WRITE;
+  msg[1] = (addr >> 8) & 0xFF;
+  msg[2] = addr & 0xFF;
+  msg[3] = data;
+
+  EEPROM_CS_LOW();
+  HAL_SPI_Transmit(&hspi2, msg, 4, HAL_MAX_DELAY);
+  EEPROM_CS_HIGH();
+
+  // Self-Timed Erase and Write Cycles(5 ms maximum) --> datasheet
+  while (EEPROM_ReadStatus() & 0x01) // uns interessiert nur erstes bit
+  {
+    // Write-In-Process (WIP) ist anschienend gesetzt
+    // warten bis nächster Prüfung
+    HAL_Delay(1);
+  }
 }
 /* USER CODE END 0 */
 
@@ -125,18 +166,29 @@ int main(void) {
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  GPIO_PinState buttonStatus;
+  GPIO_PinState last_button_state = GPIO_PIN_RESET;
+  uint8_t counter = 0;
   // const uint8_t message[] = "hello!1";
   // uint8_t empfangen[sizeof(message)];
   while (1) {
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
-    GPIO_PinState buttonPressed = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
-    if (buttonPressed == GPIO_PIN_SET) {
+
+    buttonStatus = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+
+    if (buttonStatus == GPIO_PIN_SET && last_button_state == GPIO_PIN_RESET) {
       HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
       HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9);
-      EEPROM_ReadByte(0x0000);
+      EEPROM_WriteByte(0x0000, counter);
+      volatile uint8_t value = EEPROM_ReadByte(0x0000);
+      counter++;
     }
+    last_button_state = buttonStatus;
+
+    HAL_Delay(50); // debouncen -> alternativ software zietfenster mit counter
+                   // beipsilsweise
+
     // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);
     // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
     // HAL_Delay(1000);

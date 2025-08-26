@@ -27,3 +27,10 @@ Datasheet: https://ww1.microchip.com/downloads/aemDocuments/documents/MPD/Produc
 - **GND** → Masse  
 ![[Pasted image 20250824210727.png]]
 
+![[Pasted image 20250826195846.png]]
+
+### EEPROM Speicherzellen Standardzustand
+
+Beim EEPROM gilt:
+- Ungeschriebene Speicherstellen liefern beim Auslesen den Wert **0xFF**.
+- 0xFF entspricht **alle Bits = 1** (binar: 1111 1111) bzw. 255 (dezimal) oder 377 (oktal).
