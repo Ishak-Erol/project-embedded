@@ -1,0 +1,21 @@
+- memory elements are built ffrom sequential chips
+- flip flops
+	- use of variant called data flip-flop (DFF)
+	- one single bit data input
+	- one clock input - value of master clock
+	- one single bit data output
+	- out(t) = function(in(t-1)) --outputs input from previous time unit (time unit is modeled by clock cyle of master clock)
+- time is represented by a master clock
+	- delivers alternating singnal - oscillator
+	- alternates between two phases 
+	- elapsed time between beginning of first phase and ending of second phase is called cycle
+	- current clock phase is represented by a binary unit and broacast to every chip
+- Register
+	- out(t) = function(in(t-1))
+	- Mulltiplexor + DFF = 1 bit register
+	- multi bit register built by single bit register as array
+	- this multi bit registers are called words
+- memories
+	- RAM can be buit by stacking such registers
+	- Random Access Memory - read/write operations on RAM should be able to access randomly chosen words
+	- 
