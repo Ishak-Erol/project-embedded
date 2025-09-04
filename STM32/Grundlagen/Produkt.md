@@ -13,4 +13,11 @@ https://www.reichelt.de/de/de/shop/produkt/entwicklerboards_-_usb_typ-a_auf_uart
 - [documentation](https://www.waveshare.com/wiki/CP2102_USB_UART_Board_(type_A))
 ***
 
+## Entwicklerboards - Display LCD, 1,8", 128 x 160, ST7735S
+
+https://www.reichelt.de/de/de/shop/produkt/entwicklerboards_-_display_lcd_1_8_128_x_160_st7735s-282502
+
+- [datasheet](https://www.hpinfotech.ro/ST7735S.pdf)
+- [documentation](https://cdn-reichelt.de/documents/datenblatt/R600/TF014_USER_MANUAL_EN.pdf)
+
 

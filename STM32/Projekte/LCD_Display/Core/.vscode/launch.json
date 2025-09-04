@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug STM32F100RB (OpenOCD)",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/SPI_Loopback.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32F100RB",
+            "interface": "swd",
+            "gdbPath": "/usr/bin/gdb-multiarch",
+            "runToEntryPoint": "main",
+            "svdFile": "${workspaceFolder}/STM32F100.svd",
+            "configFiles": [
+                "${workspaceFolder}/../../openocd.cfg"
+            ],
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "monitor reset"
+            ],
+            "postLaunchCommands": [
+                "monitor reset init",
+                "monitor sleep 200"
+            ]
+        }
+    ]
+}
