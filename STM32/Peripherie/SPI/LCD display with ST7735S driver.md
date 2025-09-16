@@ -19,15 +19,7 @@ controler, lcd panel, display ram
 
 
 
-MOSI -SCL - CS - (MISO)
 
-schwarz - clock ersatz ->  CLK => ? SCL ?
-weiß - SDA => D0 (aka MOSI)
-grün - RS => D/CX (interner pin)
-gelb - RST => RESX (intenrer pin) 
-orange - CS => CSX(interner pin)
-
-IM2 = 0, 4WSPI =1  --> 4-line serial interface  -- SPI4W default auf 1, da RS Pin herausgeführt ist
 
 # ST7735S – Verhalten bei Breaks
 
@@ -113,7 +105,7 @@ IM2 = 0, 4WSPI =1  --> 4-line serial interface  -- SPI4W default auf 1, da RS Pi
 
 ## 1️⃣ Initialize Controller
 - Sende Initialisierungs-Befehle (nur einmal)
-- Beispiel Rotation/Farbmodus:
+- Beispiel SLEEP_OUT, MADCTL, CASET/RASET, RAMWR
 
 ## 2️⃣ Set Drawing Rectangle (Fenster)
 - Legt Spalten/Zeilen fest, in die Pixel geschrieben werden

@@ -48,3 +48,13 @@ Wichtig: - **Dummy-Bytes (z. B. 0xFF, sihe datenblatt)** nötig, wenn Master nur
 Wichtig: **Master und Slave müssen denselben Modus verwenden!**
 ### Multi slave Konfigurationen
 ![[Pasted image 20250821162453.png]]
+
+
+
+
+![[Pasted image 20250905172317.png]]
+Datasheet seite 25
+
+
+![[Pasted image 20250905173254.png]]
+Datasheet seite 26

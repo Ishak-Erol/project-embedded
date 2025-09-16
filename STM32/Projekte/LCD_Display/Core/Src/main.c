@@ -31,21 +31,26 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DCX_low 0  // command
-#define DCX_high 1 // data/parameter
+#define DCX_low()                                                              \
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET) // command
+#define DCX_high()                                                             \
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET) // data/parameter
+
+#define SLEEP_OUT 0x11
+#define DISPLAY_ON 0x29
 
 // select at low level
-#define CSX_low 0
-#define CSX_high 1
+#define CSX_low() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET)
+#define CSX_high() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET)
 
 // reset at low level
-#define RESX_low 0 // GPIO ausgänge müssen das sein
-#define RESX_high 1
+#define RESX_low() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET)
+#define RESX_high() HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET)
 
 // pixel RGB565
-#define green 0x07E0 // 0b0000011111100000
-#define red 0xF100   // 0b1111100000000000
-#define blue 0x001F  // 0b0000000000011111
+#define GREEN 0x07E0 // 0b0000011111100000
+#define RED 0xF100   // 0b1111100000000000
+#define BLUE 0x001F  // 0b0000000000011111
 
 #define COLMOD_CMD 0x3A
 #define COLMOD_16 0x55 // 16bits pro pixel
@@ -57,12 +62,10 @@
 
 #define RASET_CMD 0x2B
 #define CASET_CMD 0x2A
-#define ST7735_width 128
 #define RASET_PARAM_START 0x0000 // Startzeile
 #define RASET_PARAM_END 0x0083   // Endzeile = 131
 #define CASET_PARAM_START 0x0000 // Startspalte
 #define CASET_PARAM_END 0x00A1   // Endspalte = 161
-#define ST7735_height 160
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -88,6 +91,45 @@ static void MX_SPI1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void send_command(uint8_t command) {
+  volatile HAL_StatusTypeDef status;
+  DCX_low();
+  status = HAL_SPI_Transmit(&hspi1, &command, 1, HAL_MAX_DELAY);
+  DCX_high(); // im asnchluss kommen parmater
+}
+
+typedef union {
+  uint16_t u16;
+  uint8_t u8[2];
+} RaCaParam;
+
+void send_1byte_param(uint8_t param) {
+  volatile HAL_StatusTypeDef status;
+  status = HAL_SPI_Transmit(&hspi1, &param, 1, HAL_MAX_DELAY);
+}
+void send_RaCa_set_param(RaCaParam start, RaCaParam end) {
+  // Achtung ST7735S arbeitet in big endian während mcu in little endian
+  // arbeitet, deswegen der tusch mittels union!
+  volatile HAL_StatusTypeDef status;
+  uint8_t parameter[2];
+  parameter[0] = start.u8[1];
+  parameter[1] = start.u8[0];
+  status = HAL_SPI_Transmit(&hspi1, parameter, 2, HAL_MAX_DELAY);
+  parameter[0] = end.u8[1];
+  parameter[1] = end.u8[0];
+  status = HAL_SPI_Transmit(&hspi1, parameter, 2, HAL_MAX_DELAY);
+}
+
+uint32_t drawPixle(uint16_t color) {
+  uint32_t i;
+  uint32_t pixel = 132 * 162;
+  // Pixeldata senden (2 Bytes, Big Endian!)
+  uint8_t data[] = {color >> 8, color & 0xFF};
+  for (i = 0; i < pixel; i++) {
+    HAL_SPI_Transmit(&hspi1, data, 2, HAL_MAX_DELAY);
+  }
+  return i;
+}
 /* USER CODE END 0 */
 
 /**
@@ -126,13 +168,104 @@ int main(void) {
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1) {
-    /* USER CODE END WHILE */
+  CSX_low();
+  send_command(SLEEP_OUT); // 0x11
+  HAL_Delay(200);          // warten bis Controller aufwacht
+  // HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) == GPIO_PIN_RESET
+  //     ? HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET)
+  //     : HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
 
-    /* USER CODE BEGIN 3 */
+  send_command(MADCTL_CMD);
+  send_1byte_param(MADCTL_PARAM);
+
+  send_command(RASET_CMD);
+  volatile RaCaParam ra_start;
+  ra_start.u16 = RASET_PARAM_START;
+  volatile RaCaParam ra_end;
+  ra_end.u16 = RASET_PARAM_END;
+  send_RaCa_set_param(ra_start, ra_end);
+
+  send_command(CASET_CMD);
+  volatile RaCaParam ca_start;
+  ca_start.u16 = CASET_PARAM_START;
+  volatile RaCaParam ca_end;
+  ca_end.u16 = CASET_PARAM_END;
+  send_RaCa_set_param(ca_start, ca_end);
+
+  send_command(COLMOD_CMD);
+  send_1byte_param(COLMOD_16);
+
+  send_command(DISPLAY_ON); // 0x29
+  HAL_Delay(20);            // Warten bis display iengeschlatet ist
+  CSX_high();
+  // Hardware-Reset zu Beginn
+  // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
+  // HAL_Delay(50);
+  // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
+  // HAL_Delay(1000);
+  // uint16_t colors[3] = {GREEN, BLUE, RED};
+  // uint8_t index = 0;
+  // GPIO_PinState buttonstatus;
+  while (1) {
+    // buttonstatus = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+    // HAL_Delay(50);
+    // if (buttonstatus == GPIO_PIN_SET) {
+    //   buttonstatus = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+    //   if (buttonstatus == GPIO_PIN_SET) {
+
+    // CSX_low();
+    // send_command(SLEEP_OUT); // 0x11
+    // HAL_Delay(120);          // warten bis Controller aufwacht
+    // // HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4) == GPIO_PIN_RESET
+    // //     ? HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET)
+    // //     : HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
+
+    // send_command(MADCTL_CMD);
+    // send_1byte_param(MADCTL_PARAM);
+
+    // send_command(RASET_CMD);
+    // volatile RaCaParam ra_start;
+    // ra_start.u16 = RASET_PARAM_START;
+    // volatile RaCaParam ra_end;
+    // ra_end.u16 = RASET_PARAM_END;
+    // send_RaCa_set_param(ra_start, ra_end);
+
+    // send_command(CASET_CMD);
+    // volatile RaCaParam ca_start;
+    // ca_start.u16 = CASET_PARAM_START;
+    // volatile RaCaParam ca_end;
+    // ca_end.u16 = CASET_PARAM_END;
+    // send_RaCa_set_param(ca_start, ca_end);
+
+    // send_command(COLMOD_CMD);
+    // send_1byte_param(COLMOD_16);
+
+    // send_command(DISPLAY_ON); // 0x29
+    // HAL_Delay(20);            // Warten bis display iengeschlatet ist
+    CSX_low();
+    send_command(RAMWR_CMD);
+    // drawPixle(colors[index]);
+    drawPixle(GREEN);
+    CSX_high();
+    HAL_Delay(5000);
+
+    // while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET) {
+    //   HAL_Delay(50);
+    // }
+
+    // index++;
+    // if (index == 3) {
+    //   index = 0;
+    // }
   }
-  /* USER CODE END 3 */
+
+  /* USER CODE END WHILE */
+
+  /* USER CODE BEGIN 3 */
 }
+/* USER CODE END 3 */
+// }
+// }
 
 /**
  * @brief System Clock Configuration
@@ -208,12 +341,41 @@ static void MX_SPI1_Init(void) {
  * @retval None
  */
 static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
 
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1 | GPIO_PIN_3 | GPIO_PIN_4,
+                    GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PA1 PA3 PA4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1 | GPIO_PIN_3 | GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PC9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -230,7 +392,8 @@ static void MX_GPIO_Init(void) {
  */
 void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
+  /* User can add his own implementation to report the HAL error return state
+   */
   __disable_irq();
   while (1) {
   }
@@ -248,8 +411,8 @@ void Error_Handler(void) {
 void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line
-     number, ex: printf("Wrong parameters value: file %s on line %d\r\n", file,
-     line) */
+     number, ex: printf("Wrong parameters value: file %s on line %d\r\n",
+     file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
